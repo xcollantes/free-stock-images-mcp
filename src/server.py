@@ -17,9 +17,9 @@ from pydantic import AnyUrl
 
 # Configure logging.
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("free-stock-images-mcp")
+logger: logging.Logger = logging.getLogger(__name__)
 
-server = Server("free-stock-images-mcp")
+server: Server = Server(__name__)
 
 
 # Free stock image sources.
@@ -27,22 +27,22 @@ STOCK_IMAGE_SOURCES: dict[str, dict[str, str]] = {
     "unsplash": {
         "name": "Unsplash",
         "base_url": "https://unsplash.com/s/photos/",
-        "description": "Beautiful free photos & images",
+        "description": "Free photos and images",
     },
     "pexels": {
         "name": "Pexels",
         "base_url": "https://www.pexels.com/search/",
-        "description": "Free stock photos & royalty free images",
+        "description": "Free photos and images",
     },
     "pixabay": {
         "name": "Pixabay",
         "base_url": "https://pixabay.com/images/search/",
-        "description": "Stunning royalty-free images & royalty-free stock",
+        "description": "Free photos and images",
     },
     "freepik": {
         "name": "Freepik",
         "base_url": "https://www.freepik.com/search?format=search&query=",
-        "description": "Free vectors, stock photos, PSD and icons",
+        "description": "Free vectors, stock photos, PSD, and icons",
     },
     "burst": {
         "name": "Burst by Shopify",

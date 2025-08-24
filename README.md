@@ -8,10 +8,12 @@ StockVault.
 
 - 🎨 **Multiple Sources**: Access 6 popular free stock image platforms
 - 🔍 **Smart Search**: Search across all sources with a single query
-- 🔗 **Direct Links**: Get direct URLs to browse and download images
+- 🔗 **Direct Links**: Get direct URLs to browse and download images  
 - 📋 **License Info**: Guidance on checking license requirements
 - 🚀 **Fast & Simple**: Lightweight server with minimal dependencies
 - 🔒 **Type Safe**: Comprehensive type hints with TypedDict for better development experience
+- 🔌 **API Integration**: Uses `requests` library for real API calls when API keys are configured
+- ⚡ **Smart Fallback**: Falls back to web search links when APIs are unavailable
 
 ## Supported Stock Image Sources
 
@@ -69,6 +71,29 @@ Run the server directly:
 python src/server.py
 ```
 
+## API Configuration (Optional)
+
+For enhanced functionality with actual image data, configure API keys:
+
+```bash
+# Unsplash API (https://unsplash.com/developers)
+export UNSPLASH_ACCESS_KEY=your_access_key_here
+
+# Pexels API (https://www.pexels.com/api/)  
+export PEXELS_API_KEY=your_api_key_here
+
+# Pixabay API (https://pixabay.com/api/docs/)
+export PIXABAY_API_KEY=your_api_key_here
+```
+
+**Benefits of API Configuration:**
+- Get actual image URLs and metadata
+- Access image dimensions, author info, and download links
+- Faster, more structured results
+- Higher quality search results
+
+**Without API keys:** Falls back to web search links (still fully functional!)
+
 ## Available Tools
 
 ### 1. `search_stock_images`
@@ -95,20 +120,26 @@ Search for stock images across multiple sources.
 
 Get information about available stock image sources.
 
-**Example Output:**
+### 3. `check_api_status`
 
-```
-# Available Free Stock Image Sources
+Check the configuration status of API keys for all sources. Shows which APIs are properly configured and provides setup instructions.
+
+**Example API Status Output:**
+
+```text
+# API Configuration Status
 
 ## Unsplash
-**ID:** `unsplash`
-**Description:** Beautiful free photos & images
-**Base URL:** https://unsplash.com/s/photos/
+✅ **API Endpoint:** https://api.unsplash.com/search/photos
+✅ **API Key (UNSPLASH_ACCESS_KEY):** Configured (abc12345...)
 
-## Pexels
-**ID:** `pexels`
-**Description:** Free stock photos & royalty free images
-**Base URL:** https://www.pexels.com/search/
+## Pexels  
+✅ **API Endpoint:** https://api.pexels.com/v1/search
+❌ **API Key (PEXELS_API_KEY):** Not found in environment
+
+## Freepik
+❌ **API Status:** No public API available
+🔗 **Fallback:** Web search links only
 ```
 
 ## Available Resources
@@ -146,9 +177,9 @@ pip install -e .
 free-stock-images-mcp/
 ├── src/
 │   ├── __init__.py        # Package initialization
-│   ├── server.py          # Main MCP server implementation
+│   ├── server.py          # Main MCP server with requests-based API integration
 │   └── types.py           # Type definitions (TypedDict classes)
-├── requirements.txt       # Python dependencies  
+├── requirements.txt       # Python dependencies (requests, mcp, pydantic)
 ├── pyproject.toml        # Project configuration
 ├── test_server.py        # Test script
 ├── example_usage.py      # Usage examples

@@ -148,37 +148,37 @@ def format_api_results(source_id: str, api_data: Dict, query: str) -> str:
         Formatted text with image information
     """
     source = STOCK_IMAGE_SOURCES[source_id]
-    result_text = f"\n## {source['name']} (API Results)\n"
-    result_text += f"**Description:** {source['description']}\n\n"
+    result_text = f"\n{source['name']} (API Results)\n"
+    result_text += f"Description: {source['description']}\n\n"
 
     try:
         if source_id == "unsplash":
             results = api_data.get("results", [])
             for i, img in enumerate(results[:5], 1):
-                result_text += f"**{i}. {img.get('description', 'Untitled')}**\n"
-                result_text += f"- **URL:** {img['urls']['regular']}\n"
-                result_text += f"- **Download:** {img['links']['download']}\n"
-                result_text += f"- **Author:** {img['user']['name']}\n"
-                result_text += f"- **Dimensions:** {img['width']}x{img['height']}\n\n"
+                result_text += f"{i}. {img.get('description', 'Untitled')}\n"
+                result_text += f"- URL: {img['urls']['regular']}\n"
+                result_text += f"- Download: {img['links']['download']}\n"
+                result_text += f"- Author: {img['user']['name']}\n"
+                result_text += f"- Dimensions: {img['width']}x{img['height']}\n\n"
 
         elif source_id == "pexels":
             photos = api_data.get("photos", [])
             for i, img in enumerate(photos[:5], 1):
-                result_text += f"**{i}. Photo #{img['id']}**\n"
-                result_text += f"- **URL:** {img['src']['large']}\n"
-                result_text += f"- **Medium:** {img['src']['medium']}\n"
-                result_text += f"- **Photographer:** {img['photographer']}\n"
-                result_text += f"- **Dimensions:** {img['width']}x{img['height']}\n\n"
+                result_text += f"{i}. Photo #{img['id']}\n"
+                result_text += f"- URL: {img['src']['large']}\n"
+                result_text += f"- Medium: {img['src']['medium']}\n"
+                result_text += f"- Photographer: {img['photographer']}\n"
+                result_text += f"- Dimensions: {img['width']}x{img['height']}\n\n"
 
         elif source_id == "pixabay":
             hits = api_data.get("hits", [])
             for i, img in enumerate(hits[:5], 1):
-                result_text += f"**{i}. {img.get('tags', 'Untagged')}**\n"
-                result_text += f"- **URL:** {img['webformatURL']}\n"
-                result_text += f"- **Large:** {img.get('largeImageURL', 'N/A')}\n"
-                result_text += f"- **User:** {img['user']}\n"
+                result_text += f"{i}. {img.get('tags', 'Untagged')}\n"
+                result_text += f"- URL: {img['webformatURL']}\n"
+                result_text += f"- Large: {img.get('largeImageURL', 'N/A')}\n"
+                result_text += f"- User: {img['user']}\n"
                 result_text += (
-                    f"- **Dimensions:** {img['imageWidth']}x{img['imageHeight']}\n\n"
+                    f"- Dimensions: {img['imageWidth']}x{img['imageHeight']}\n\n"
                 )
 
     except KeyError as e:

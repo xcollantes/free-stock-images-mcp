@@ -3,7 +3,7 @@
 
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'free_stock_images_mcp'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 def test_imports():
     """Test that all imports work."""

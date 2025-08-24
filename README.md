@@ -11,6 +11,7 @@ StockVault.
 - 🔗 **Direct Links**: Get direct URLs to browse and download images
 - 📋 **License Info**: Guidance on checking license requirements
 - 🚀 **Fast & Simple**: Lightweight server with minimal dependencies
+- 🔒 **Type Safe**: Comprehensive type hints with TypedDict for better development experience
 
 ## Supported Stock Image Sources
 
@@ -52,7 +53,7 @@ pip install -r requirements.txt
   "mcpServers": {
     "free-stock-images": {
       "command": "python",
-      "args": ["/path/to/free-stock-images-mcp/free_stock_images_mcp/server.py"]
+      "args": ["/path/to/free-stock-images-mcp/src/server.py"]
     }
   }
 }
@@ -65,7 +66,7 @@ pip install -r requirements.txt
 Run the server directly:
 
 ```bash
-python free_stock_images_mcp/server.py
+python src/server.py
 ```
 
 ## Available Tools
@@ -143,11 +144,14 @@ pip install -e .
 
 ```
 free-stock-images-mcp/
-├── free_stock_images_mcp/
-│   ├── __init__.py
-│   └── server.py          # Main MCP server implementation
-├── requirements.txt       # Python dependencies
+├── src/
+│   ├── __init__.py        # Package initialization
+│   ├── server.py          # Main MCP server implementation
+│   └── types.py           # Type definitions (TypedDict classes)
+├── requirements.txt       # Python dependencies  
 ├── pyproject.toml        # Project configuration
+├── test_server.py        # Test script
+├── example_usage.py      # Usage examples
 ├── README.md             # This file
 ├── LICENSE               # MIT License
 └── .gitignore           # Git ignore rules
@@ -175,10 +179,16 @@ STOCK_IMAGE_SOURCES = {
 
 ```bash
 # Run the server directly for testing
-python free_stock_images_mcp/server.py
+python src/server.py
 
-# Test with MCP inspector (if available)
-npx @modelcontextprotocol/inspector python free_stock_images_mcp/server.py
+# Test with MCP inspector (if available)  
+npx @modelcontextprotocol/inspector python src/server.py
+
+# Run the test suite
+python test_server.py
+
+# Run usage examples
+python example_usage.py
 ```
 
 ## License Requirements
@@ -217,7 +227,7 @@ A: Check that the path in `claude_desktop_config.json` is absolute and correct
 A: Verify your internet connection and try a different search query
 
 **Q: "Permission denied"**
-A: Ensure the server script has execute permissions: `chmod +x free_stock_images_mcp/server.py`
+A: Ensure the server script has execute permissions: `chmod +x src/server.py`
 
 ## License
 

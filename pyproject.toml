@@ -17,4 +17,4 @@ dependencies = [
 ]
 
 [project.scripts]
-free-stock-images-mcp = "free_stock_images_mcp.server:main"
+free-stock-images-mcp = "src.server:main"
